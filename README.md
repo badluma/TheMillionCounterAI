@@ -1,26 +1,24 @@
-# The Million Counter AI 🚀
+# The Million Counter AI
 
-An ambitious AI experiment that challenges language models to count from 1 to 1,000,000 using local Ollama models. This project features two different implementations: a simple single-agent counter and an interactive two-agent system with a cheerleader motivating the counter.
+An AI experiment that challenges Ollama LLMs to count from 1 to 1,000,000 using local models. This project features an interactive two-agent system with a cheerleader motivating the counter.
 
-## 📋 Overview
+## Overview
 
 This project uses the Ollama framework to run AI models locally and task them with the seemingly simple but computationally challenging goal of counting to one million. The AI must generate every single number in sequence without shortcuts, compressions, or skips.
 
 ### Available Scripts
 
-- **`main.py`**: Single-agent implementation - One AI model counts to a million
 - **`themillioncounterai.py`**: Two-agent implementation - A "Counter" AI counts while a "Cheerleader" AI provides motivation and oversight
 
-## 🎯 Features
+## Features
 
-- ✅ Uses local Ollama models (no API keys required)
-- ✅ Strict counting rules - no shortcuts allowed
-- ✅ Two different implementation approaches
-- ✅ Real-time console output with colored text
-- ✅ Automatic completion detection
-- ✅ Cross-platform support (Windows, macOS, Linux)
+- Uses local Ollama models (no API keys required)
+- Strict counting rules - no shortcuts allowed
+- Real-time console output with colored text
+- Automatic completion detection
+- Cross-platform support (Windows, macOS, Linux)
 
-## 📦 Prerequisites
+## Prerequisites
 
 Before running the Million Counter AI, ensure you have:
 
@@ -29,7 +27,8 @@ Before running the Million Counter AI, ensure you have:
 - **Internet connection** for initial model download (~4.7GB)
 - **Sufficient disk space** for the AI model
 
-## 🚀 Installation & Setup
+**Warning!** This script was tested with a model with 7 billion parameters (qwen2.5-coder:7b). You might run into some issues when trying a model with lower capabilities
+## Installation & Setup
 
 ### Windows
 
@@ -40,11 +39,12 @@ Before running the Million Counter AI, ensure you have:
 # 2. Start Ollama service (if not running)
 ollama serve
 
-# 3. In a new terminal, pull the required model
+# 3. In a new terminal, pull the required model 
+#    (you can change your prefered model in the script)
 ollama pull qwen2.5-coder:7b
 
 # 4. Clone and navigate to project directory
-git clone https://github.com/yourusername/TheMillionCounterAI.git
+git clone https://github.com/badluma/TheMillionCounterAI.git
 cd TheMillionCounterAI
 
 # 5. Create virtual environment
@@ -72,11 +72,12 @@ curl -fsSL https://ollama.ai/install.sh | sh
 # 2. Start Ollama service (if not running)
 ollama serve &
 
-# 3. Pull the required model
+# 3. Pull the required model 
+#    (you can change your prefered model in the script)
 ollama pull qwen2.5-coder:7b
 
 # 4. Clone and navigate to project directory
-git clone https://github.com/yourusername/TheMillionCounterAI.git
+git clone https://github.com/badluma/TheMillionCounterAI.git
 cd TheMillionCounterAI
 
 # 5. Create virtual environment
@@ -88,9 +89,7 @@ source venv/bin/activate
 # 7. Install dependencies
 pip install ollama
 
-# 8. Run the script (choose one)
-python main.py
-# OR
+# 8. Run the script
 python themillioncounterai.py
 ```
 
@@ -104,11 +103,12 @@ curl -fsSL https://ollama.ai/install.sh | sh
 ollama serve &
 # OR if using systemd: sudo systemctl start ollama
 
-# 3. Pull the required model
+# 3. Pull the required model 
+#    (you can change your prefered model in the script)
 ollama pull qwen2.5-coder:7b
 
 # 4. Clone and navigate to project directory
-git clone https://github.com/yourusername/TheMillionCounterAI.git
+git clone https://github.com/badluma/TheMillionCounterAI.git
 cd TheMillionCounterAI
 
 # 5. Create virtual environment
@@ -120,22 +120,12 @@ source venv/bin/activate
 # 7. Install dependencies
 pip install ollama
 
-# 8. Run the script (choose one)
-python main.py
-# OR
+# 8. Run the script
 python themillioncounterai.py
 ```
 
-## 🎮 Usage
+## Usage
 
-### Single Agent Mode (`main.py`)
-The simple implementation where one AI model attempts to count to a million:
-
-```bash
-python main.py
-```
-
-### Two Agent Mode (`themillioncounterai.py`)
 The interactive implementation featuring two AI agents:
 
 ```bash
@@ -145,19 +135,19 @@ python themillioncounterai.py
 - **Counter** (Cyan): Generates the actual numbers
 - **Cheerleader** (White): Provides motivation and ensures compliance
 
-## 🎯 The Challenge
+## Instructions
 
 The AI must follow strict rules:
 
-- ✅ Generate every number from 1 to 1,000,000 in sequence
-- ✅ No skipping numbers
-- ✅ No shortcuts (like "1 2 3 ... 1000000")
-- ✅ No punctuation marks (commas, dots, dashes, brackets)
-- ✅ Maximum 10 numbers per message
-- ✅ Numbers must be separated by spaces only
-- ✅ Complete the task by outputting the special completion code: `x3sdas2323uefoui`
+- Generate every number from 1 to 1,000,000 in sequence
+- No skipping numbers
+- No shortcuts (like "1 2 3 ... 1000000")
+- No punctuation marks (commas, dots, dashes, brackets)
+- Maximum 10 numbers per message
+- Numbers must be separated by spaces only
+- Complete the task by outputting the special completion code: `x3sdas2323uefoui`
 
-## ⚙️ Configuration
+## Configuration
 
 You can modify the AI model used by editing the `model` variable in the scripts:
 
@@ -168,7 +158,7 @@ model = "qwen2.5-coder:7b"  # Default model
 # model = "codellama"
 ```
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -199,36 +189,33 @@ venv\Scripts\activate     # On Windows
 - Close other applications to free up RAM
 - Ensure you have at least 8GB of available RAM
 
-## 🎯 Success Criteria
+## Success Criteria
 
 The AI successfully completes the challenge when:
 1. It has generated all numbers from 1 to 1,000,000
 2. It outputs the completion message: `x3sdas2323uefoui`
 3. No numbers were skipped or generated out of order
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. Ideas for improvements:
 
 - Add more AI model options
 - Implement progress tracking and resume functionality
 - Add performance metrics and timing
-- Create a web interface
 - Add validation for number sequences
 
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🔗 Links
+## Links
 
 - [Ollama Official Website](https://ollama.ai/)
 - [Qwen2.5-Coder Model](https://ollama.ai/library/qwen2.5-coder)
 
-## ⚠️ Disclaimer
+## Disclaimer
 
-This is an experimental project designed to test the limits of AI language models. The task of counting to one million may take an extremely long time or may not complete successfully, depending on the model's capabilities and consistency.
+This is an experimental project designed to test the limits of AI language models. The task of counting to one million may take an extremely long time or may not complete successfully, depending on the model's capabilities and consistency. You might run into some issues when running a model with low capabilities (<7b)
 
----
-
-**Happy Counting!** 🎯✨
+**Happy Counting!**
