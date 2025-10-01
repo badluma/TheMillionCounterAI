@@ -57,8 +57,6 @@ venv\Scripts\activate
 pip install ollama
 
 # 8. Run the script (choose one)
-python main.py
-# OR
 python themillioncounterai.py
 ```
 
