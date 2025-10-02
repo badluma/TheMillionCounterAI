@@ -203,7 +203,7 @@ def main():
         
         # Show usage stats every 100 iterations
         if SHOW_USAGE and iteration % 100 == 0:
-            print_usage()
+            print_usage(iteration)
         
         # Clear old messages periodically to free memory
         if iteration % 1000 == 0:
