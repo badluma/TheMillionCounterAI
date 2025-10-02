@@ -68,7 +68,9 @@ venv\Scripts\activate
 # 8. Install dependencies
 pip install ollama
 
-# 9. Run the script
+# 8. Run the script (choose one)
+python main.py
+# OR
 python themillioncounterai.py
 ```
 
@@ -237,16 +239,14 @@ The AI successfully completes the challenge when:
 
 Contributions are welcome! Please feel free to submit a Pull Request. Ideas for improvements:
 
-- Add progress tracking and resume functionality
-- Implement checkpoint saving/loading
-- Add performance metrics and detailed timing analysis
-- Support for different number ranges or counting patterns
-- Enhanced error recovery mechanisms
-- Progress visualization
+- Add more AI model options
+- Implement progress tracking and resume functionality
+- Add performance metrics and timing
+- Add validation for number sequences
 
-## License
+## 📝 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [CC0 Licens](LICENSE).
 
 ## Links
 
