@@ -45,27 +45,30 @@ Before running the Million Counter AI, ensure you have:
 # 1. Install Ollama (if not already installed)
 # Download from https://ollama.ai/ and run the installer
 
-# 2. Start Ollama service (if not running)
+# 2. Install psutil to display hardware stats
+pip install psutil
+
+# 3. Start Ollama service (if not running)
 ollama serve
 
-# 3. In a new terminal, pull the required model 
+# 4. In a new terminal, pull the required model 
 #    (you can change your preferred model in the script)
 ollama pull qwen2.5-coder:7b
 
-# 4. Clone and navigate to project directory
+# 5. Clone and navigate to project directory
 git clone https://github.com/badluma/TheMillionCounterAI.git
 cd TheMillionCounterAI
 
-# 5. Create virtual environment
+# 6. Create virtual environment
 python -m venv venv
 
-# 6. Activate virtual environment
+# 7. Activate virtual environment
 venv\Scripts\activate
 
-# 7. Install dependencies
+# 8. Install dependencies
 pip install ollama
 
-# 8. Run the script
+# 9. Run the script
 python themillioncounterai.py
 ```
 
@@ -210,10 +213,6 @@ venv\Scripts\activate     # On Windows
 - Close other applications to free up RAM
 - Ensure you have at least 8GB of available RAM
 - Disable hardware usage monitoring to reduce overhead
-
-**Hardware usage not showing (Windows):**
-- Hardware monitoring uses the `resource` module which is not available on Windows
-- This is expected behavior and won't affect counting functionality
 
 **AI keeps making errors:**
 - The validation system provides specific feedback to correct errors

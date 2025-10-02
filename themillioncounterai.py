@@ -17,22 +17,22 @@ RESET = "\033[0m"
 os.system('cls' if os.name == 'nt' else 'clear')
 
 print(f"""{CYAN}
-           ▐    ▌                     
-           ▜▀   ▛▀▖  ▞▀▖
-           ▐ ▖  ▌ ▌  ▛▀ 
-            ▀   ▘ ▘  ▝▀▘
-▗▌    ▞▀▖  ▞▀▖  ▞▀▖    ▞▀▖  ▞▀▖  ▞▀▖
- ▌    ▌▞▌  ▌▞▌  ▌▞▌    ▌▞▌  ▌▞▌  ▌▞▌
- ▌    ▛ ▌  ▛ ▌  ▛ ▌    ▛ ▌  ▛ ▌  ▛ ▌
-▝▀    ▝▀   ▝▀   ▝▀     ▝▀   ▝▀   ▝▀ 
-                ▐                 ▗ 
-▞▀▖ ▞▀▖ ▌ ▌ ▛▀▖ ▜▀  ▞▀▖ ▙▀▖   ▝▀▖ ▄ 
-▌ ▖ ▌ ▌ ▌ ▌ ▌ ▌ ▐ ▖ ▛▀  ▌     ▞▀▌ ▐ 
-▝▀  ▝▀  ▝▀▘ ▘ ▘  ▀  ▝▀▘ ▘     ▝▀▘ ▀▘
+▐                 ▌                     
+▜▀                ▛▀▖                ▞▀▖
+▐ ▖               ▌ ▌                ▛▀ 
+ ▀                ▘ ▘                ▝▀▘
+▗▌    ▞▀▖   ▞▀▖   ▞▀▖    ▞▀▖   ▞▀▖   ▞▀▖
+ ▌    ▌▞▌   ▌▞▌   ▌▞▌    ▌▞▌   ▌▞▌   ▌▞▌
+ ▌    ▛ ▌   ▛ ▌   ▛ ▌    ▛ ▌   ▛ ▌   ▛ ▌
+▝▀    ▝▀    ▝▀    ▝▀     ▝▀    ▝▀    ▝▀ 
+                ▐                     ▗ 
+▞▀▖ ▞▀▖ ▌ ▌ ▛▀▖ ▜▀  ▞▀▖ ▙▀▖       ▝▀▖ ▄ 
+▌ ▖ ▌ ▌ ▌ ▌ ▌ ▌ ▐ ▖ ▛▀  ▌         ▞▀▌ ▐ 
+▝▀  ▝▀  ▝▀▘ ▘ ▘  ▀  ▝▀▘ ▘         ▝▀▘ ▀▘
 
 """)
 
-MODEL_INPUT = input("Your preferred Ollama Model (>7b recommended, press Enter for default): ").strip()
+MODEL_INPUT = input(f"{RESET}Your preferred Ollama Model (>7b recommended, press Enter for default): ").strip()
 if MODEL_INPUT == "" or MODEL_INPUT.lower() == "d":
     MODEL = "qwen2.5-coder:7b"
     print(f"Using default model: {MODEL}")
@@ -44,11 +44,19 @@ usage_input = input("Do you want to see your hardware usage? (y/n): ").strip().l
 if usage_input in ["y", "yes", "true", "t"]:
     SHOW_USAGE = True
     print("Hardware usage display: ENABLED")
+    # Check if psutil is available for Windows
+    if os.name == 'nt':
+        try:
+            import psutil
+        except ImportError:
+            print(f"{YELLOW}Warning: psutil not installed. Installing for Windows compatibility...{RESET}")
+            print("Run: pip install psutil")
+            SHOW_USAGE = False
 else:
     SHOW_USAGE = False
     print("Hardware usage display: DISABLED")
 
-print()
+print(CYAN)
 
 # System prompts
 COUNTER_PROMPT = """You are a number generator. Your ONLY job is to count up numbers in sequence from 1 to 1,000,000.
@@ -64,17 +72,27 @@ CRITICAL RULES:
 
 Example of correct format: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"""
 
-def print_usage():
-    """Print current memory usage using built-in resource module"""
+def print_usage(iteration, clear=True):
+    """Print current memory usage at the bottom of terminal"""
+    if clear:
+        # Move cursor to bottom of terminal
+        print("\n" * 2)
+    
     if os.name != 'nt':
         usage = resource.getrusage(resource.RUSAGE_SELF)
         memory_mb = usage.ru_maxrss / 1024
         cpu_time = usage.ru_utime + usage.ru_stime
-        print()
-        print(f"{CYAN}Memory: {memory_mb:.1f}MB | CPU Time: {cpu_time:.1f}s{RESET}")
-        print()
+        print(f"{CYAN}{'─' * 60}")
+        print(f"Iteration: {iteration:,} | Memory: {memory_mb:.1f}MB | CPU Time: {cpu_time:.1f}s")
+        print(f"{'─' * 60}{RESET}")
     else:
-        print(f"{YELLOW}(Hardware usage monitoring not available on Windows){RESET}")
+        import psutil
+        process = psutil.Process()
+        memory_mb = process.memory_info().rss / 1024 / 1024
+        cpu_percent = process.cpu_percent(interval=0.1)
+        print(f"{CYAN}{'─' * 60}")
+        print(f"Iteration: {iteration:,} | Memory: {memory_mb:.1f}MB | CPU: {cpu_percent:.1f}%")
+        print(f"{'─' * 60}{RESET}")
 
 class Cheerleader:
     """Validates counter output and provides appropriate feedback"""
