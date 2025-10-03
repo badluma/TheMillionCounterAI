@@ -75,8 +75,7 @@ Example of correct format: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"""
 def print_usage(iteration, clear=True):
     """Print current memory usage at the bottom of terminal"""
     if clear:
-        # Move cursor to bottom of terminal
-        print("\n" * 2)
+        print()
     
     if os.name != 'nt':
         usage = resource.getrusage(resource.RUSAGE_SELF)
@@ -93,6 +92,9 @@ def print_usage(iteration, clear=True):
         print(f"{CYAN}{'─' * 60}")
         print(f"Iteration: {iteration:,} | Memory: {memory_mb:.1f}MB | CPU: {cpu_percent:.1f}%")
         print(f"{'─' * 60}{RESET}")
+    
+    if clear:
+        print()
 
 class Cheerleader:
     """Validates counter output and provides appropriate feedback"""
