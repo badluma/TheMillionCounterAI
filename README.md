@@ -244,7 +244,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. Ideas for 
 - Add performance metrics and timing
 - Add validation for number sequences
 
-## 📝 License
+## License
 
 This project is open source and available under the [CC0 Licens](LICENSE).
 
